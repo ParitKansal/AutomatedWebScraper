@@ -1,3 +1,57 @@
+FEEDS ={'data.json' : {'format' : 'json'}}
+
+#For SCRAPEOPS
+SCRAPEOPS_API_KEY = '8857a1e3-3e44-428f-8809-d6028ba24f0f'
+#SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = "https://headers.scrapeops.io/v1/user-agents"
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = "https://headers.scrapeops.io/v1/browser-headers"
+#SCRAPEOPS_FAKE_USER_AGENT_ENABLED  = True
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
+SCRAPEOPS_NUM_RESULTS = 50
+
+#For PROXY
+PROXY_USER = 'your_proxy_user_here'
+PROXY_PASSWORD = 'your_proxy_password_here'
+PROXY_ENDPOINT = 'your_proxy_endpoint_here'
+PROXY_PORT = 'your_proxy_port_here'
+
+
+
+#User agent is one part of header
+#If we want only user agent to change use ScrapeOpsFakeUserAgentMiddleware
+#But if you want to change complete user agent  Use ScrapeOpsFakeBrowserHeaderAgentMiddleware
+DOWNLOADER_MIDDLEWARES = {
+#    "webscraper.middlewares.MyProxyMiddleware": 300,
+#    "webscraper.middlewares.HttpProxyMiddleware": 350,
+#    "webscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+    "webscraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 400,
+}
+
+# Obey robots.txt rules
+# True - If we need to follow the rules regarding whether the website allows us to scrape
+# False - If we do not want to follow the rules regarding whether the website allows us to scrape
+ROBOTSTXT_OBEY = True
+
+
+ITEM_PIPELINES = {
+    "webscraper.pipelines.WebscraperPipeline": 300,
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Scrapy settings for webscraper project
 #
 # For simplicity, this file contains only settings considered important or
@@ -11,54 +65,6 @@ BOT_NAME = "webscraper"
 
 SPIDER_MODULES = ["webscraper.spiders"]
 NEWSPIDER_MODULE = "webscraper.spiders"
-
-FEEDS ={'data.json' : {'format' : 'json'}}
-
-####################################################################################################
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-SCRAPEOPS_API_KEY = '8857a1e3-3e44-428f-8809-d6028ba24f0f'
-#SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = "https://headers.scrapeops.io/v1/user-agents"
-SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = "https://headers.scrapeops.io/v1/browser-headers"
-#SCRAPEOPS_FAKE_USER_AGENT_ENABLED  = True
-SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
-SCRAPEOPS_NUM_RESULTS = 50
-#User agent is one part of header
-#If we want only user agent to change use ScrapeOpsFakeUserAgentMiddleware
-#But if you want to change complete user agent  Use ScrapeOpsFakeBrowserHeaderAgentMiddleware
-DOWNLOADER_MIDDLEWARES = {
-#    "webscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
-    "webscraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 400,
-}
-#
-#
-#
-#
-# Obey robots.txt rules
-# True - If we need to follow the rules regarding whether the website allows us to scrape
-# False - If we do not want to follow the rules regarding whether the website allows us to scrape
-ROBOTSTXT_OBEY = True
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-####################################################################################################
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "webscraper (+http://www.yourdomain.com)"
@@ -106,9 +112,6 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    "webscraper.pipelines.WebscraperPipeline": 300,
-}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
