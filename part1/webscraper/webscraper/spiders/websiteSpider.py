@@ -28,7 +28,6 @@ class WebsitespiderSpider(scrapy.Spider):
         # Yield the item to the Scrapy pipeline
         yield web_item
         
-        """
         # Extract and follow links to other pages on the website
         for href in response.xpath('//a/@href').extract():
             # Build the absolute URL
@@ -37,4 +36,3 @@ class WebsitespiderSpider(scrapy.Spider):
             if url.startswith(('http://', 'https://')):
                 # Follow the link
                 yield scrapy.Request(url, callback=self.parse)
-        """
